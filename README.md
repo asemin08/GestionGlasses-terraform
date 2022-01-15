@@ -11,12 +11,12 @@ Ce projet à pour but de déployer cette application sur AWS à l'aide de Terraf
 Ce projet va nous permet de déployer automatiquement notre application de gestion de lunette sur le cloud.
 
 ---
-## Prérequis
-* Avoir Java JDK 16
-* Avoir Maven
-* Télécharger le code du projet
-* Se placer sur la branche qui correspond au TP
-* Exécuter le main de l'application
+## Prérequis pour lancer l'application
+
+ - [Création d'un compte AWS](#création-d'un-compte-aws)
+
+
+## Création d'un compte AWS
 
 ---
 ## Liste des projets

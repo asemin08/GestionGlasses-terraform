@@ -13,7 +13,7 @@ Ce projet va nous permet de déployer automatiquement notre application de gesti
 ---
 ## Prérequis pour lancer l'application
 
-### Création d'un compte AWS
+###  Prérequis gestion sur AWS
 
 1. Créer un compte AWS (Si vous avais un compte ce rendre à l'étape 2 ).
    * Ce rendre sur le formulaire d'inscription [AWS](https://portal.aws.amazon.com/billing/signup#/start)

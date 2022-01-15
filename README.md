@@ -1,4 +1,4 @@
-# GestionGlasses
+# GestionGlasses-terraform
 
 ## Projet
 
@@ -8,8 +8,7 @@ Ce projet à été réalisé dans le cadre d'une formation à l'ENSUP. Cette for
 
 Ce projet à pour but de déployer cette application sur AWS à l'aide de Terraform et Ansible.
 
-Ce projet va nous permettend de déployer automatiquement notre application de gestion de lunette sur le cloud.
-
+Ce projet va nous permet de déployer automatiquement notre application de gestion de lunette sur le cloud.
 
 ---
 ## Prérequis

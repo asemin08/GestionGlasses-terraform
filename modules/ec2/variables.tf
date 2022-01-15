@@ -56,5 +56,5 @@ variable "git_proprietaire" {
 
 variable "git_projet" {
   type    = string
-  default = "ansiblegestionglasses"
+  default = "GestionGlasses-playground"
 }

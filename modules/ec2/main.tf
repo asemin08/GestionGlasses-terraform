@@ -19,7 +19,7 @@ resource "aws_instance" "gestionglasses-ec2" {
   }
 
   provisioner "local-exec" {
-    command = " echo PUBLIC IP: ${var.ip_public} >> ip_ec2.txt"
+    command = " echo PUBLIC IP: ${var.ip_public} >> ip_connection.txt"
   }
 
   provisioner "remote-exec" {
@@ -29,7 +29,7 @@ resource "aws_instance" "gestionglasses-ec2" {
       "sudo add-apt-repository --yes --update ppa:ansible/ansible",
       "sudo apt install --yes ansible",
       "git clone https://github.com/${var.git_proprietaire}/${var.git_projet}.git",
-      "cd ${var.git_projet}/GestionGlassesProjet",
+      "cd ${var.git_projet}",
       "ansible-galaxy install -r requirements.yml --force",
       "ansible-playbook -i hosts.yml gestionGlasses.yml"
     ] 

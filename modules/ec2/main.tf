@@ -19,7 +19,7 @@ resource "aws_instance" "gestionglasses-ec2" {
   }
 
   provisioner "local-exec" {
-    command = " echo L'application est lancé sur cette url : http://${var.ip_public}:8080/ >> ip_connection.txt"
+    command = "echo GestionGlasses est disponible sur cette url : http://${var.ip_public}:8080/ >> ip_connection.txt"
   }
 
   provisioner "remote-exec" {

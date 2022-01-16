@@ -115,6 +115,7 @@ Teste pour voir si Terraform est bien installé et configuré.
 ![Version terraform](https://github.com/asemin08/GestionGlasses-terraform/blob/main/imgs_reamde/TerraVersion.png)
 
 Si vous avez le même résultat vous avaient fini l'installation et la configuration de Terraform sur votre poste de travail.
+
 --- 
 <div id='application'/> 
  

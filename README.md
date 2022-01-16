@@ -12,7 +12,14 @@ Ce projet va nous permet de déployer automatiquement notre application de gesti
 
 ---
 ## Prérequis pour lancer l'application
+
+Sommaire
+ 1. [Création d'un compte AWS](#compteAws)
+ 2. [Utilisation compte AWS](#utiliseAws)
+ 3. [Installation de Terraform](#Terraform)
+ 4. [Déploiement de l'application](#application)
 ---
+<div id='compteAws'/>  
 ###  Prérequis création compte AWS
 ---
 
@@ -52,6 +59,7 @@ Si vous ne disposez pas d'un compte utilisateur d'AWS, ou même d'un compte admi
 21. Ensuite nous pouvons nous déconnecter.
 ![Deconexion utilisateur](https://github.com/asemin08/GestionGlasses-terraform/blob/main/imgs_reamde/Deconnexion.png)
 ---
+<div id='utiliseAws'/>  
 ###  Prérequis pour utiliser notre compte AWS
 --- 
 1. Ouvrir le fichier svg récupéré à l'étape 18 du "prérequis créations d'un compte AWS".
@@ -76,7 +84,9 @@ Si vous ne disposez pas d'un compte utilisateur d'AWS, ou même d'un compte admi
 Nous en avons fini avec la configuration de AWS. Donc nous allons passer à l'installation de Terraform.
 
 ---
+<div id='Terraform'/>  
 ###  Prérequis pour installer Terraform
+---
 
 1. Se rendre sur ce lien [télécharger Terraform](https://www.terraform.io/downloads)
 2. Choisir la version selon son système d'exploitation.
@@ -103,6 +113,7 @@ Teste pour voir si Terraform est bien installé et configuré.
 
 Si vous avez le même résultat vous avaient fini l'installation et la configuration de Terraform sur votre poste de travail.
 --- 
+<div id='application'/>  
 ###  Prérequis pour déployer l'application de Gestion de lunette.
 ---
 

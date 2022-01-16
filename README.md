@@ -96,15 +96,46 @@ Nous allons continuer l'installation pour windows.
 10. Cliqué sur ok sur tous les pop-up ouverts.
 Teste pour voir si Terraform est bien installé et configuré.
 11. Sur votre clavier faite la combinaison windows + r .
-12. Puis recherche cmd cela va ouvrir un invite de commande.
+12. Puis recherche cmd cela va ouvrir une invite de commande.
 ![W+R terraform](https://github.com/asemin08/GestionGlasses-terraform/blob/main/imgs_reamde/W+R.png)
 13. Dans cette invite lancer la commande : ```terraform -v```
 ![Version terraform](https://github.com/asemin08/GestionGlasses-terraform/blob/main/imgs_reamde/TerraVersion.png)
 
 Si vous avez le même résultat vous avaient fini l'installation et la configuration de Terraform sur votre poste de travail.
 --- 
+###  Prérequis pour déployer l'application de Gestion de lunette.
+---
 
-
+1. Avoir ou installer [git](https://git-scm.com/downloads).
+2. Récupérer le code source de l'application.
+```git clone https://github.com/asemin08/GestionGlasses-terraform.git```
+3. Dans le projet récupéré créer un dossier .aws
+4. Créer un fichier credentials
+5. Copier ce code dans le fichier. Remplacé par les valeurs que vous avez dans votre fichier SVG voire "Prérequis pour utiliser notre compte AWS" étape 3.
+```sh
+[default]
+aws_access_key_id = "Acces key id"
+aws_secret_access_key = "Secret access key"
+```
+6. Copier le fichier de votre clé (voir " Prérequis pour utiliser notre compte AWS" étape 12 ) dans le dossier .aws/
+![AWS DIRECTORY](https://github.com/asemin08/GestionGlasses-terraform/blob/main/imgs_reamde/AwsDirectory.png)
+7. Ouvrir le fichier variable ce trouvant dans le dossier module et ec2
+8. Cherche la variables cle_ssh est remplacé la valeur par le nom du fichier de votre clé dans notre cas DemoGithub.
+![AWS VARS](https://github.com/asemin08/GestionGlasses-terraform/blob/main/imgs_reamde/VariableModif.png)
+9. Ensuite il faut ouvrir une invite de commande dans le dossier.
+10. Il faut ce placé dans le dossier app avec la commande : ```cd app```
+11. Ensuite nous faisons la commande :  ```terraform init ``` pour initialiser notre projet comme projet Terraform.
+12. Ensuite la commande : ```terraform plan``` pour voir préparer les actions de Terraform.
+13. Ensuite la commande : ```terraform apply``` pour lancer le script Terraform.
+A ce moment saisir yes pour continuer ou no pour quitter le déploiement de l'application à l'aide de terraform.
+![AWS YeSorNo](https://github.com/asemin08/GestionGlasses-terraform/blob/main/imgs_reamde/YesOrNot.png)
+14. Lorsque le Terraform apply est fini (environ 5 minutes) il faut se rendre dans le dossier app et ouvrir le fichier ip_connection.
+![AWS TERRAFORM finit](https://github.com/asemin08/GestionGlasses-terraform/blob/main/imgs_reamde/Deployfin.png)
+15. Aller à la dernière ligne du fichier.
+16. Copier l'url
+![AWS URL](https://github.com/asemin08/GestionGlasses-terraform/blob/main/imgs_reamde/url_dispo.png)
+17. Ouvrir un navigateur 
+18. Coller l'url et vous accédez à notre application.
 ---
 ## Liste des projets
 

@@ -149,6 +149,7 @@ A ce moment saisir "yes" pour continuer ou "no" pour quitter le déploiement de 
 ![AWS TERRAFORM finit](https://github.com/asemin08/GestionGlasses-terraform/blob/main/imgs_reamde/Deployfin.png)
 15. Aller à la dernière ligne du fichier.
 16. Copier l'url
+
 ![AWS URL](https://github.com/asemin08/GestionGlasses-terraform/blob/main/imgs_reamde/url_dispo.png)
 17. Ouvrir un navigateur 
 18. Coller l'url et vous accédez à notre application.

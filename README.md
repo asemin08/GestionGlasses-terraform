@@ -20,6 +20,7 @@ Sommaire
  4. [Déploiement de l'application](#application)
 ---
 <div id='compteAws'/>  
+
 ###  Prérequis création compte AWS
 ---
 
@@ -60,6 +61,7 @@ Si vous ne disposez pas d'un compte utilisateur d'AWS, ou même d'un compte admi
 ![Deconexion utilisateur](https://github.com/asemin08/GestionGlasses-terraform/blob/main/imgs_reamde/Deconnexion.png)
 ---
 <div id='utiliseAws'/>  
+
 ###  Prérequis pour utiliser notre compte AWS
 --- 
 1. Ouvrir le fichier svg récupéré à l'étape 18 du "prérequis créations d'un compte AWS".
@@ -85,6 +87,7 @@ Nous en avons fini avec la configuration de AWS. Donc nous allons passer à l'in
 
 ---
 <div id='Terraform'/>  
+
 ###  Prérequis pour installer Terraform
 ---
 
@@ -113,7 +116,8 @@ Teste pour voir si Terraform est bien installé et configuré.
 
 Si vous avez le même résultat vous avaient fini l'installation et la configuration de Terraform sur votre poste de travail.
 --- 
-<div id='application'/>  
+<div id='application'/> 
+ 
 ###  Prérequis pour déployer l'application de Gestion de lunette.
 ---
 

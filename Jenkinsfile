@@ -20,7 +20,8 @@ pipeline {
         stage('init') {
             steps {
                 withCredentials([file(credentialsId: 'MY_RESTO_KEY', variable: 'my-private-key')]) {
-                   sh "mkdir .aws"
+                   sh 'ls -la'
+                   sh "mkdir ./.aws"
                    sh "cp \$my-private-key .aws/MyResto.pem"
                    sh "ls -la"
                 }       

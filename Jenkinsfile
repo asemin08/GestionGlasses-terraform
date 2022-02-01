@@ -21,7 +21,7 @@ pipeline {
             steps {
                 withCredentials([file(credentialsId: 'MY_RESTO_KEY', variable: 'my-private-key')]) {
                    sh 'ls -la'
-                   if(!fileExists("./.aws") {
+                   if(!fileExists("./.aws")) {
                       sh "mkdir ./.aws"
                    }
                    sh "cp \$my-private-key .aws/MyResto.pem"

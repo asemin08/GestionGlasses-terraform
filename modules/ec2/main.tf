@@ -36,7 +36,7 @@ resource "aws_instance" "gestionglasses-ec2" {
     connection {
       type        = "ssh"
       user        = "${var.utilisateur_ssh}"
-      private_key = "${MY_RESTO_KEY}"
+      private_key = file("../.aws/${var.cle_ssh}.pem")
       host        = "${self.public_ip}"
     }
   }

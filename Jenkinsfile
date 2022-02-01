@@ -33,9 +33,11 @@ pipeline {
             }
             
             steps {
-                sh "ls"
-                sh "terraform plan -input=false -out tfplan "
-                sh 'terraform show -no-color tfplan > tfplan.txt'
+                dir("app") {
+                    sh "ls"
+                    sh "terraform plan -input=false -out tfplan "
+                    sh 'terraform show -no-color tfplan > tfplan.txt'
+                }
             }
         }
         stage('Approval') {

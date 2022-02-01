@@ -18,8 +18,8 @@ pipeline {
 
     stages {
         stage('Plan') {
-            dir('app/') {
                steps {
+                  dir('app') {
                     sh 'terraform init -input=false'
                 }            
             }          

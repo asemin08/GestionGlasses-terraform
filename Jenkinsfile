@@ -41,5 +41,6 @@ pipeline {
                     equals expected: true, actual: params.destroy
                 }
            }
+        }
   }
 }

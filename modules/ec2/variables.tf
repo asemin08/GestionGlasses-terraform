@@ -20,7 +20,7 @@ variable "type_instance" {
 
 variable "cle_ssh" {
   type    = string
-  default = "${MY_RESTO_KEY}"
+  default = "GestionGlasses"
 }
 
 variable "securite_groupe" {

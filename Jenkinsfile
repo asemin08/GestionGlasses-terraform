@@ -17,75 +17,13 @@ pipeline {
 
 
     stages {
-        stage('checkout') {
-            steps {
-                 script{
-                        dir("terraform")
-                        {
-                            git "https://github.com/asemin08/GestionGlasses-terraform.git"
-                        }
-                    }
-                }
-            }
-
         stage('Plan') {
-            when {
-                not {
-                    equals expected: true, actual: params.destroy
-                }
-            }
+            dir('app/') {
+               steps {
+                    sh 'terraform init -input=false'
+                }            
+            }          
             
-            steps {
-                sh 'terraform init -input=false'
-                sh 'terraform workspace select ${environment} || terraform workspace new ${environment}'
-
-                sh "terraform plan -input=false -out tfplan "
-                sh 'terraform show -no-color tfplan > tfplan.txt'
-            }
         }
-        stage('Approval') {
-           when {
-               not {
-                   equals expected: true, actual: params.autoApprove
-               }
-               not {
-                    equals expected: true, actual: params.destroy
-                }
-           }
-           
-                
-            
-
-           steps {
-               script {
-                    def plan = readFile 'tfplan.txt'
-                    input message: "Do you want to apply the plan?",
-                    parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
-               }
-           }
-       }
-
-        stage('Apply') {
-            when {
-                not {
-                    equals expected: true, actual: params.destroy
-                }
-            }
-            
-            steps {
-                sh "terraform apply -input=false tfplan"
-            }
-        }
-        
-        stage('Destroy') {
-            when {
-                equals expected: true, actual: params.destroy
-            }
-        
-        steps {
-           sh "terraform destroy --auto-approve"
-        }
-    }
-
   }
 }

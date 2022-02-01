@@ -54,11 +54,13 @@ pipeline {
             
 
            steps {
+              dir("app") {
                script {
                     def plan = readFile 'tfplan.txt'
                     input message: "Do you want to apply the plan?",
                     parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
                }
+              }
            }
        }
 
@@ -70,7 +72,9 @@ pipeline {
             }
             
             steps {
-                sh "terraform apply -input=false tfplan"
+                dir("app") {
+                    sh "terraform apply -input=false tfplan"
+                }
             }
         }
         
@@ -80,7 +84,9 @@ pipeline {
             }
         
         steps {
+          dir("app") {
            sh "terraform destroy --auto-approve"
+          }
         }
     }
 

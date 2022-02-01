@@ -20,6 +20,7 @@ pipeline {
         stage('init') {
             steps {
                  dir("app") {
+                        echo "Global property file: ${MY_RESTO_KEY}"
                         sh'terraform init -input=false'
                     }
                 }

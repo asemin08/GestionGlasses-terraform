@@ -22,7 +22,7 @@ pipeline {
                 withCredentials([file(credentialsId: 'MY_RESTO_KEY', variable: 'my-private-key')]) {
                    sh "cd ./.aws/"
                    sh "pwd"
-                   sh "cp \$my-private-key ./.aws/MyResto.pem"
+                   sh "cp \$my-private-key .aws/"
                    sh "ls -la"
                 }       
                  dir("app") {

@@ -17,7 +17,7 @@ pipeline {
 
 
     stages {
-        stage('Plan') {
+        stage('init') {
                steps {
                   dir('app') {
                     sh 'terraform init -input=false'
@@ -25,5 +25,21 @@ pipeline {
             }          
             
         }
+         stage('Plan') {
+            steps {
+                sh 'pwd'
+                sh "terraform plan -input=false -out tfplan "
+                sh 'terraform show -no-color tfplan > tfplan.txt'
+            }
+        }
+        stage('Approval') {
+           when {
+               not {
+                   equals expected: true, actual: params.autoApprove
+               }
+               not {
+                    equals expected: true, actual: params.destroy
+                }
+           }
   }
 }

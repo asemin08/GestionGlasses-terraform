@@ -29,7 +29,7 @@ pipeline {
 //                 }       
                 dir(".aws"){
                   withCredentials([file(credentialsId: 'MY_RESTO_KEY', variable: 'FILE')]) {
-                      sh 'use $FILE'
+                      sh 'echo $FILE > MyResto.pem'
                   }
                 }
                  dir("app") {

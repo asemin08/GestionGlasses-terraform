@@ -20,9 +20,10 @@ pipeline {
         stage('init') {
             steps {
                 withCredentials([file(credentialsId: 'MY_RESTO_KEY', variable: 'my-private-key')]) {
-                   sh "cd ./.aws/"
+//                    sh "cd ./.aws/"
                    sh "pwd"
-                   sh "cp ${my-private-key} .aws/"
+                writeFile file: '.aws/private.pem', text: readFile(my_private_key)
+//                    sh "cp ${my-private-key} .aws/"
                    sh "ls -la"
                 }       
                  dir("app") {

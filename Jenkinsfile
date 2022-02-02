@@ -2,9 +2,8 @@ pipeline {
     agent any
 
     parameters {
-        string(name: 'environment', defaultValue: 'terraform', description: 'Workspace/environment file to use for deployment')
-        booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
-        booleanParam(name: 'destroy', defaultValue: false, description: 'Destroy Terraform build?')
+        booleanParam(name: 'autoValidation', defaultValue: true, description: 'Lance automatiquement le Terraform apply après le plan (Par défault activer)')
+        booleanParam(name: 'destroy', defaultValue: false, description: 'Voulez vous détruire votre instance Terraform en cours ?')
 
     }
 
@@ -18,28 +17,16 @@ pipeline {
 
     stages {
         stage('init') {
-            steps {
-//                 withCredentials([file(credentialsId: 'MY_RESTO_KEY', variable: 'private-key')]) {
-// //                    sh "cd ./.aws/"
-//                    sh "pwd"
-//                 writeFile file: '.aws/private.pem', text: readFile(my_private_key)
-// //                    sh "cp ${my-private-key} .aws/"
-//                    sh "ls -la"
-//                 }       
+            steps {  
                 dir(".aws"){
                     withCredentials([file(credentialsId: 'TOTO_SSH', variable: 'MyResto')]) {
                         sh 'cp $MyResto MyResto.pem'
                     }
-//                   withCredentials([sshUserPrivateKey(credentialsId: 'TEST_SHH', variable: 'FILE')]) {
-//                       sh 'echo $FILE > MyResto.pem'
-//                   }
-                }
                  dir("app") {
                         sh'terraform init -input=false'
                     }
                 }
             }
-
         stage('Plan') {
             when {
                 not {
@@ -58,7 +45,7 @@ pipeline {
         stage('Approval') {
            when {
                not {
-                   equals expected: true, actual: params.autoApprove
+                   equals expected: true, actual: params.autoValidation
                }
                not {
                     equals expected: true, actual: params.destroy
@@ -72,8 +59,8 @@ pipeline {
               dir("app") {
                script {
                     def plan = readFile 'tfplan.txt'
-                    input message: "Do you want to apply the plan?",
-                    parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
+                    input message: "Voulez vous vraiment appliquer le plan?",
+                    parameters: [text(name: 'Plan', description: 'Regarder le plan', defaultValue: plan)]
                }
               }
            }

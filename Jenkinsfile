@@ -19,7 +19,7 @@ pipeline {
         stage('Terraform init') {
             steps {     
                 dir(".aws"){
-                    if (fileExists('MyResto.pem')) {
+                    if(fileExists('MyResto.pem')) {
                         echo 'Yes'
                         sh 'rm MyResto.pem'
                     }

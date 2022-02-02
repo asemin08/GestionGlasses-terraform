@@ -11,7 +11,7 @@ pipeline {
      environment {
         AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
-        MYRESTO_SSH              = credentials('MYRESTO_SSH')
+        MYRESTO_SSH           = credentials('MYRESTO_SSH')
     }
 
 
@@ -19,11 +19,15 @@ pipeline {
         stage('Terraform init') {
             steps {     
                 dir(".aws"){
+                    if (fileExists('MyResto.pem')) {
+                        echo 'Yes'
+                        sh 'rm MyResto.pem'
+                    }
                     withCredentials([file(credentialsId: 'MYRESTO_SSH', variable: 'MyResto')]) {
                         sh 'cp $MyResto MyResto.pem'
                     }
                 }
-                 dir("app") {
+                dir("app") {
                         sh'terraform init -input=false'
                 }
             }

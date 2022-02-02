@@ -20,12 +20,22 @@ pipeline {
     stages {
         
 	    stage('clean workspace') {
+            when {
+                not {
+                    equals expected: true, actual: params.destroy
+                }
+            }
             steps {
                 deleteDir()
             }
         }
 
         stage('source clone and checkout the branch') {
+	   when {
+                not {
+                    equals expected: true, actual: params.destroy
+                }
+            }
             steps {
                 checkout([$class: 'GitSCM',
                     branches: [[name: "*/${GIT_BRANCH}"]],

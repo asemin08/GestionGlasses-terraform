@@ -27,10 +27,15 @@ pipeline {
 // //                    sh "cp ${my-private-key} .aws/"
 //                    sh "ls -la"
 //                 }       
-//                  dir("app") {
-//                         echo "Global property file: ${MY_RESTO_KEY}"
-//                         sh'terraform init -input=false'
-//                     }
+                dir(".aws"){
+                  withCredentials([file(credentialsId: 'MY_RESTO_KEY', variable: 'FILE')]) {
+                      sh 'use $FILE'
+                  }
+                }
+                 dir("app") {
+                        echo "Global property file: ${MY_RESTO_KEY}"
+                        sh'terraform init -input=false'
+                    }
                 }
             }
 

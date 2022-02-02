@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     parameters {
-        booleanParam(name: 'autoValidation', defaultValue: false, description: 'Lancer automatiquement le Terraform apply après le plan ? (Par défault activer)')
+        booleanParam(name: 'autoValidation', defaultValue: true, description: 'Lancer automatiquement le Terraform apply après le plan ? (Par défault activer)')
         booleanParam(name: 'destroy', defaultValue: false, description: 'Voulez vous détruire votre instance Terraform en cours ?')
 	choice(
-            choices: ['test' , 'main'],
-            description: '',
+            choices: ['prod' , 'test'],
+            description: 'Choisir entre le code de prod ou de test',
             name: 'ENV'
         )
     }
@@ -19,7 +19,7 @@ pipeline {
         GIT_PATH = "https://github.com/asemin08/GestionGlasses-terraform.git"
 	GIT_TEST_BRANCH = "with_jenkins"
         GIT_MAIN_BRANCH = "main"
-        GIT_BRANCH = "${params.ENV == 'test' ? GIT_TEST_BRANCH : GIT_MAIN_BRANCH}"
+        GIT_BRANCH = "${params.ENV == 'prod' ? GIT_MAIN_BRANCH : GIT_TEST_BRANCH}"
     }
 
 

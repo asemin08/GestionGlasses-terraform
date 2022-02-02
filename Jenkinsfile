@@ -80,7 +80,7 @@ pipeline {
             steps {
                 dir("app") {
                     script {
-                        ef plan = readFile 'tfplan.txt'
+                        def plan = readFile 'tfplan.txt'
                         input message: "Voulez vous vraiment appliquer le plan?",
                         parameters: [text(name: 'Plan', description: 'Regarder le plan', defaultValue: plan)]
                     }

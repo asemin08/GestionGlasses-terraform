@@ -28,7 +28,7 @@ pipeline {
 //                 }       
                 dir(".aws"){
                     withCredentials([file(credentialsId: 'TOTO_SSH', variable: 'MyResto')]) {
-                        sh 'cat $MyResto'
+                        sh 'cp $MyResto MyResto.pem'
                     }
 //                   withCredentials([sshUserPrivateKey(credentialsId: 'TEST_SHH', variable: 'FILE')]) {
 //                       sh 'echo $FILE > MyResto.pem'

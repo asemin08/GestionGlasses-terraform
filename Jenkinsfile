@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters {
-        booleanParam(name: 'autoValidation', defaultValue: false, description: 'Lancer automatiquement le Terraform apply après le plan ? (Par défault activer)')
+        booleanParam(name: 'autoValidation', defaultValue: true, description: 'Lancer automatiquement le Terraform apply après le plan ? (Par défault activer)')
         booleanParam(name: 'destroy', defaultValue: false, description: 'Voulez vous détruire votre instance Terraform en cours ?')
 
     }

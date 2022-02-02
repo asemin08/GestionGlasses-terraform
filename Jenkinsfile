@@ -17,7 +17,6 @@ pipeline {
 
     stages {
         
-       stages {
 	    stage('clean workspace') {
             steps {
                 deleteDir()
@@ -27,10 +26,6 @@ pipeline {
         stage('Terraform init') {
             steps {     
                 dir(".aws"){
-//                     if(fileExists('MyResto.pem')) {
-//                         echo 'Yes'
-//                         sh 'rm MyResto.pem'
-//                     }
                     withCredentials([file(credentialsId: 'MYRESTO_SSH', variable: 'MyResto')]) {
                         sh 'cp $MyResto MyResto.pem'
                     }

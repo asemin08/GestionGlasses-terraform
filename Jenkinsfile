@@ -4,7 +4,11 @@ pipeline {
     parameters {
         booleanParam(name: 'autoValidation', defaultValue: false, description: 'Lancer automatiquement le Terraform apply après le plan ? (Par défault activer)')
         booleanParam(name: 'destroy', defaultValue: false, description: 'Voulez vous détruire votre instance Terraform en cours ?')
-
+	choice(
+            choices: ['test' , 'main'],
+            description: '',
+            name: 'ENV'
+        )
     }
 
 
@@ -13,7 +17,9 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
         MYRESTO_SSH           = credentials('MYRESTO_SSH')
         GIT_PATH = "https://github.com/asemin08/GestionGlasses-terraform.git"
-        GIT_BRANCH = "main"
+	GIT_TEST_BRANCH = "with_jenkins"
+        GIT_MAIN_BRANCH = "main"
+        GIT_BRANCH = "${params.ENV == 'test' ? GIT_TEST_BRANCH : GIT_MAIN_BRANCH}"
     }
 
 

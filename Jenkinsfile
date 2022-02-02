@@ -50,6 +50,11 @@ pipeline {
         }
            
         stage('Terraform init') {
+	    when {
+                not {
+                    equals expected: true, actual: params.destroy
+                }
+            }
             steps {     
                 dir(".aws"){
                     withCredentials([file(credentialsId: 'MYRESTO_SSH', variable: 'MyResto')]) {

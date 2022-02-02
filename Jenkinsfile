@@ -16,6 +16,14 @@ pipeline {
 
 
     stages {
+        
+       stages {
+	    stage('clean workspace') {
+            steps {
+                deleteDir()
+            }
+        }
+           
         stage('Terraform init') {
             steps {     
                 dir(".aws"){

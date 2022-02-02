@@ -19,16 +19,17 @@ pipeline {
     stages {
         stage('init') {
             steps {
-                withCredentials([file(credentialsId: 'MY_RESTO_KEY', variable: 'my-private-key')]) {
-//                    sh "cd ./.aws/"
-                   sh "pwd"
-                writeFile file: '.aws/private.pem', text: readFile(my_private_key)
-//                    sh "cp ${my-private-key} .aws/"
-                   sh "ls -la"
-                }       
-                 dir("app") {
-                        echo "Global property file: ${MY_RESTO_KEY}"
-                        sh'terraform init -input=false'
+                sh "echo $MY_RESTO_KEY"
+//                 withCredentials([file(credentialsId: 'MY_RESTO_KEY', variable: 'my-private-key')]) {
+// //                    sh "cd ./.aws/"
+//                    sh "pwd"
+//                 writeFile file: '.aws/private.pem', text: readFile(my_private_key)
+// //                    sh "cp ${my-private-key} .aws/"
+//                    sh "ls -la"
+//                 }       
+//                  dir("app") {
+//                         echo "Global property file: ${MY_RESTO_KEY}"
+//                         sh'terraform init -input=false'
                     }
                 }
             }

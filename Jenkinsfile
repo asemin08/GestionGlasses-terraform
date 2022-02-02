@@ -12,7 +12,6 @@ pipeline {
      environment {
         AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
-        TEST_SSH              = credentials('TEST_SSH')
     }
 
 
@@ -26,11 +25,11 @@ pipeline {
 // //                    sh "cp ${my-private-key} .aws/"
 //                    sh "ls -la"
 //                 }       
-                dir(".aws"){
-                  withCredentials([file(credentialsId: 'TEST_SSH', variable: 'FILE')]) {
-                      sh 'echo $FILE > MyResto.pem'
-                  }
-                }
+//                 dir(".aws"){
+//                   withCredentials([file(credentialsId: 'TEST_SSH', variable: 'FILE')]) {
+//                       sh 'echo $FILE > MyResto.pem'
+//                   }
+//                 }
                  dir("app") {
                         echo "Global property file: ${MY_RESTO_KEY}"
                         sh'terraform init -input=false'

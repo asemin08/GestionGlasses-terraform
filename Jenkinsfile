@@ -19,7 +19,7 @@ pipeline {
     stages {
         stage('init') {
             steps {
-//                 withCredentials([file(credentialsId: 'MY_RESTO_KEY', variable: 'my-private-key')]) {
+//                 withCredentials([file(credentialsId: 'MY_RESTO_KEY', variable: 'private-key')]) {
 // //                    sh "cd ./.aws/"
 //                    sh "pwd"
 //                 writeFile file: '.aws/private.pem', text: readFile(my_private_key)
@@ -27,8 +27,8 @@ pipeline {
 //                    sh "ls -la"
 //                 }       
                 dir(".aws"){
-                    withCredentials([file(credentialsId: 'TOTO_SSH', variable: 'my-private-key')]) {
-                        sh 'cat /${my-private-key}'
+                    withCredentials([file(credentialsId: 'TOTO_SSH', variable: 'MyResto')]) {
+                        sh 'cat $MyResto'
                     }
 //                   withCredentials([sshUserPrivateKey(credentialsId: 'TEST_SHH', variable: 'FILE')]) {
 //                       sh 'echo $FILE > MyResto.pem'

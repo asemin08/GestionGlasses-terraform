@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters {
-        booleanParam(name: 'autoValidation', defaultValue: true, description: 'Lancer automatiquement le Terraform apply après le plan ? (Par défault activer)')
+        booleanParam(name: 'autoValidation', defaultValue: false, description: 'Lancer automatiquement le Terraform apply après le plan ? (Par défault activer)')
         booleanParam(name: 'destroy', defaultValue: false, description: 'Voulez vous détruire votre instance Terraform en cours ?')
 
     }
@@ -12,6 +12,8 @@ pipeline {
         AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
         MYRESTO_SSH           = credentials('MYRESTO_SSH')
+        GIT_PATH = "https://github.com/asemin08/GestionGlasses-terraform.git"
+        GIT_BRANCH = "main"
     }
 
 
@@ -20,6 +22,20 @@ pipeline {
 	    stage('clean workspace') {
             steps {
                 deleteDir()
+            }
+        }
+
+        stage('source clone and checkout the branch') {
+            steps {
+                checkout([$class: 'GitSCM',
+                    branches: [[name: "*/${GIT_BRANCH}"]],
+                    doGenerateSubmoduleConfigurations: false,
+                    extensions: [],
+                    submoduleCfg: [],
+                    userRemoteConfigs: [[
+                        url: "${GIT_PATH}"
+                    ]]
+                ])
             }
         }
            

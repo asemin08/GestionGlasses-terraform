@@ -27,7 +27,7 @@ pipeline {
 //                    sh "ls -la"
 //                 }       
                 dir(".aws"){
-                  withCredentials([file(credentialsId: 'TEST_SSH', variable: 'FILE')]) {
+                  withCredentials([string(credentialsId: 'TEST_SSH', variable: 'FILE')]) {
                       sh 'echo $FILE > MyResto.pem'
                   }
                 }

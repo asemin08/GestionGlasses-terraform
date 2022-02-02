@@ -52,6 +52,7 @@ pipeline {
                         url: "${GIT_PATH}"
                     ]]
                 ])
+		sh 'git branch'
             }
         }
            

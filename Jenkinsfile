@@ -12,7 +12,7 @@ pipeline {
      environment {
         AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
-        TEST_SHH              = credentials('TEST_SHH')
+        TOTO_SSH              = credentials('TOTO_SSH')
     }
 
 
@@ -27,9 +27,12 @@ pipeline {
 //                    sh "ls -la"
 //                 }       
                 dir(".aws"){
-                  withCredentials([sshUserPrivateKey(credentialsId: 'TEST_SHH', variable: 'FILE')]) {
-                      sh 'echo $FILE > MyResto.pem'
-                  }
+                    withCredentials([file(credentialsId: 'TOTO_SSH', variable: 'my-private-key')]) {
+                       sh "cp \$my-public-key MyResto.pem"
+                    }
+//                   withCredentials([sshUserPrivateKey(credentialsId: 'TEST_SHH', variable: 'FILE')]) {
+//                       sh 'echo $FILE > MyResto.pem'
+//                   }
                 }
                  dir("app") {
                         sh'terraform init -input=false'

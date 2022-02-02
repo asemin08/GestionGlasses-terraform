@@ -13,7 +13,7 @@ pipeline {
         AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
         MY_RESTO_KEY          = credentials('MY_RESTO_KEY')
-        test          = credentials('test')
+        TEST_SSH          = credentials('TEST_SSH')
     }
 
 
@@ -29,7 +29,7 @@ pipeline {
 //                    sh "ls -la"
 //                 }       
                 dir(".aws"){
-                  withCredentials([file(credentialsId: 'test', variable: 'FILE')]) {
+                  withCredentials([file(credentialsId: 'TEST_SSH', variable: 'FILE')]) {
                       sh 'echo $FILE > MyResto.pem'
                   }
                 }
